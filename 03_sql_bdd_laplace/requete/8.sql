@@ -14,7 +14,7 @@ JOIN
 WHERE 
     b.type_local = 'Appartement'
 AND 
-    b.nb_pieces >= 4
+    b.nb_pieces > 4
 GROUP BY 
     r.nom_region
 ORDER BY 

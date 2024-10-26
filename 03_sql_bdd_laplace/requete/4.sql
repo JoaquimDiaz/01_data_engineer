@@ -1,7 +1,7 @@
 -- Liste des 10 départements où le prix au mètre carré est le plus élevé.
 
 SELECT 
-    c.code_dep, AVG(v.valeur_fonciere / b.surface_totale) AS 'avg_prix_m2'
+    c.code_dep, ROUND(AVG(v.valeur_fonciere / b.surface_totale),2) AS 'avg_prix_m2'
 FROM 
     vente v
 JOIN 
