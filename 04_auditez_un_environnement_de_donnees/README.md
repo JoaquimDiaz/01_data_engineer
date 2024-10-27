@@ -43,6 +43,9 @@
 
 ### 2. Réaliser le schéma relationnel et le DD
 
+* Id_ticket vs id_bdd ???
+* date clef primaire ?
+
 ### 3. Créer la BDD
 
 Connection à la base via :
