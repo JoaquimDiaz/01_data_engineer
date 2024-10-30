@@ -66,6 +66,16 @@ mysql --local-infile -h db-market.cdccg8o6cj70.eu-west-3.rds.amazonaws.com -u ad
 ### 2. Requete SQL pour comprendre logs
 
 * Erreur à trouver
+
+* **Problème du CA inconsistant** : Des données ont étés rentrés le 15 août pour le 14 août ce qui explique pourquoi le CA affiché sur Power BI était différent entre le 14 et le 16.
+  * Lié à un problème de conception de la bdd ?
+*  **Mise à jour des prix** : Dans les lignes de mise à jour des prix il y a des dates. Les produits correspondant dans la table produit ne sont pas des dates, une erreur a du être remonté.
+   *  Action -> suppresion des lignes concernés des logs.
+   *  Peut-être faudrait-il avoir une table de log dédié à chaque table ?
+   *  On pourrait aussi avoir un check si champs = prix alors détails doit-être en float. `TRIGGER`
+* **Suppression des employée** : Supprimer des employées pourrait corrompre la cohérence des données sur le long terme. Les clefs étrangères des lignes de vente qui corresponde à cette id_employe seront corrompu à la suite de ce DELETE.
+  * Peut-être rejouter un status pour les employés qui ont quitté l'entreprise et ne supprimer que leur informations RGPD. 
+  * Dangeureux de supprimer des clefs primaires/étrangères.
   
 ---
 
