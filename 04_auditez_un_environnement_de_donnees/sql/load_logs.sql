@@ -6,7 +6,7 @@ CREATE TABLE logs (
     id_ligne CHAR(50) NOT NULL,
     champs CHAR(50),
     detail CHAR(200),
-    PRIMARY KEY (id_user, date, action, table_insert, id_ligne, champs, detail) -- Assuming uniqueness by these columns
+    PRIMARY KEY (id_user, date, action, table_insert, id_ligne, champs, detail)
 );
 
 LOAD DATA LOCAL INFILE '../data/logs.csv'
