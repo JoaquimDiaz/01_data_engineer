@@ -43,6 +43,8 @@
 
 ### 2. Réaliser le schéma relationnel et le DD
 
+![img](./img/schema_relationnel.png)
+
 * Id_ticket vs id_bdd ???
 * date clef primaire ?
 
