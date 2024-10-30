@@ -30,7 +30,7 @@ CREATE TABLE calendrier (
     mois INT NOT NULL,
     jour INT NOT NULL,
     mois_nom CHAR(100) NOT NULL,
-    annee_mois DATE NOT NULL,
+    annee_mois CHAR(100) NOT NULL,
     jour_semaine INT NOT NULL,
     trimestre CHAR(50) NOT NULL,
     PRIMARY KEY (date)
