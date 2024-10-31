@@ -39,12 +39,21 @@
 
 [Data Warehouse](https://fr.wikipedia.org/wiki/Entrep%C3%B4t_de_donn%C3%A9es)
 
+Un data warehouse est généralement structuré pour faciliter l'analyse de grandes quantités de données historiques, avec une organisation en dimensions et faits qui permet de réaliser des analyses complexes, comme les tendances et les agrégations. Il utilise souvent une architecture en étoile ou en flocon de neige et est optimisé pour des requêtes en lecture intensive.
+
+Au contraire, une base de données transactionnelle (OLTP) est optimisée pour les opérations CRUD (Create, Read, Update, Delete) rapides et fréquentes, et elle privilégie l'intégrité des données et la cohérence immédiate. Elle est principalement utilisée pour gérer les transactions courantes, comme les ventes ou les enregistrements clients, dans des systèmes opérationnels.
+
 [Modèle en étoile](https://openclassrooms.com/fr/courses/7110891-realisez-des-dashboards-avec-power-bi/7212446-reliez-les-tables-pour-realiser-des-analyses-croisees)
+
+Le modèle en étoile est une structure de base de données utilisée dans les entrepôts de données pour faciliter l’analyse rapide. Il comporte une table de faits centrale contenant des données quantitatives, entourée de tables de dimensions descriptives qui enrichissent les analyses. Les tables de dimensions sont non normalisées, ce qui augmente la redondance mais permet des requêtes plus rapides. Ce modèle est idéal pour les besoins en reporting et tableaux de bord interactifs.
 
 ## 2. Réaliser le schéma relationnel et le DD
 
 ![img](./img/schema_relationnel.png)
 
+Ce modèle de base de donnée est un modèle en étoile, avec `vente` comme table de fait centrale, et des tables de dimensions `client` `employe` `produit` `calendrier`.
+
+On a aussi une table `logs` qui permet d'avoir un historique des actions `INSERT` `UPDATE` `DELETE` sur la les différentes tables de la base.
 
 ## 3. Créer la BDD
 
