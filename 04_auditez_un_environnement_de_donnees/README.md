@@ -39,6 +39,8 @@
 
 [Data Warehouse](https://fr.wikipedia.org/wiki/Entrep%C3%B4t_de_donn%C3%A9es)
 
+[What is a Data Warehouse ?](https://www.startdataengineering.com/post/what-is-a-data-warehouse/)
+
 Un data warehouse est généralement structuré pour faciliter l'analyse de grandes quantités de données historiques, avec une organisation en dimensions et faits qui permet de réaliser des analyses complexes, comme les tendances et les agrégations. Il utilise souvent une architecture en étoile ou en flocon de neige et est optimisé pour des requêtes en lecture intensive.
 
 Au contraire, une base de données transactionnelle (OLTP) est optimisée pour les opérations CRUD (Create, Read, Update, Delete) rapides et fréquentes, et elle privilégie l'intégrité des données et la cohérence immédiate. Elle est principalement utilisée pour gérer les transactions courantes, comme les ventes ou les enregistrements clients, dans des systèmes opérationnels.
