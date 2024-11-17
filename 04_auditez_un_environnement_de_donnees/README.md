@@ -139,6 +139,20 @@ SET GLOBAL local_infile = true;
 
 > **Plusieurs clients pour un ticket** : Anomalie ? Ou juste paiement partagé ?
   
+### D. Plusieurs employées sur un ticket
+
+```sql
+SELECT 
+    v.*
+FROM
+    vente v 
+JOIN
+    logs l ON v.id_bdd = l.id_ligne 
+    AND l.detail = 't_3839';
+```
+
+* Présence de 2 employés sur 1 ticket.
+* Présence d'un produit sur la commande qui est rentré le 15.
 
 
 ---
