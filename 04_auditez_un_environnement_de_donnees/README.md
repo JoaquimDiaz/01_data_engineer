@@ -65,6 +65,11 @@ Connection à la base via :
 mysql --local-infile -h db-market.cdccg8o6cj70.eu-west-3.rds.amazonaws.com -u admin -p
 ```
 
+Pour autoriser le chargement des données depuis un fichier local :
+
+```sql
+SET GLOBAL local_infile = true;
+```
 
 ---
 
