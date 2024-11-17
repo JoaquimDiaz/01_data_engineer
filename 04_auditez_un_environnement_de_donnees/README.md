@@ -114,6 +114,15 @@ SET GLOBAL local_infile = true;
    *  Peut-être faudrait-il avoir une table de log dédié à chaque table ?
    *  On pourrait aussi avoir un check si champs = prix alors détails doit-être en float. `TRIGGER`
 
+#### B.2 Pas d'historique des prix
+
+* Aucune trace de la mise à jour des prix dans la table `produit`.
+
+* Cela peut poser un prolbème de cohérence pour le calcul du CA.
+  * On pourrait obtenir un faux CA après une mise à jour des prix.
+
+> Mettre en place un système de suivit des prix ?
+
 ### C. *Suppression des employées*
 
 ---
