@@ -65,7 +65,7 @@ Connection à la base via :
 mysql --local-infile -h db-market.cdccg8o6cj70.eu-west-3.rds.amazonaws.com -u admin -p
 ```
 
-<<<<<<< HEAD
+
 > La base n'est plus sur AWS
 
 Lancer la base via WSL :
@@ -88,7 +88,6 @@ SET GLOBAL local_infile = true;
 
 ## 1. Insérer les logs dans la BDD
 
-<<<<<<< HEAD
 ![img](./img/creation_logs.png)
 
 ![img](./resultat_requete/count_logs.png)
