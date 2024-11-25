@@ -56,6 +56,15 @@ Connection à la base via :
 mysql --local-infile -h db-market.cdccg8o6cj70.eu-west-3.rds.amazonaws.com -u admin -p
 ```
 
+> La base n'est plus sur AWS
+
+Lancer la base via WSL :
+
+```bash
+sudo service start mysql
+sudo mysql --local-infile
+```
+
 
 ---
 
@@ -63,11 +72,38 @@ mysql --local-infile -h db-market.cdccg8o6cj70.eu-west-3.rds.amazonaws.com -u ad
 
 ### 1. Insérer les logs dans la BDD
 
+![img](./img/creation_logs.png)
+
+![img](./resultat_requete/count_logs.png)
+
 ### 2. Requete SQL pour comprendre logs
 
-* Erreur à trouver
-  
+#### On regarde toute les actions qui ont été effectués dans les logs
+
+![img](./resultat_requete/count_action.png)
+
+#### Dans les `INSERT` :
+
+![img](./resultat_requete/champs_insert.png)
+
+- Ajout de nouveaux clients ==> date_inscription
+-  41377 qui correspond bien au nombre de lignes de la table vente
+
+#### Les `DELETE` :
+
+![img](./resultat_requete/delete_employe.PNG)
+
+* Correspond à deux employés qui ont étés supprimés
+
+#### Les `UPDATE` :
+
+![img](./resultat_requete/count_update.png)
+
+* Mise à jour des prix et des mots de passe
+
 ---
+
+#### Problème du CA
 
 ## Partie 3
 
