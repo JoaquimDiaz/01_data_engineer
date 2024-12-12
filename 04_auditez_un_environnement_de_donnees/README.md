@@ -71,7 +71,7 @@ mysql --local-infile -h db-market.cdccg8o6cj70.eu-west-3.rds.amazonaws.com -u ad
 Lancer la base via WSL :
 
 ```bash
-sudo service start mysql
+sudo service mysql start
 sudo mysql --local-infile
 ```
 
@@ -88,7 +88,7 @@ SET GLOBAL local_infile = true;
 
 ## 1. Insérer les logs dans la BDD
 
-![img](./img/creation_logs.png)
+![img](./resultat_requete/creation_logs.png)
 
 ![img](./resultat_requete/count_logs.png)
 
