@@ -1,0 +1,23 @@
+[tool.poetry]
+name = "05-nosql"
+version = "0.1.0"
+description = ""
+authors = ["Joaquim <diazjoaquim@gmail.com>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.9"
+pandas = "^2.2.3"
+polars = "^1.17.1"
+ipykernel = "^6.29.5"
+pymongo = "^4.10.1"
+
+
+[[tool.poetry.source]]
+name = "orange"
+url = "https://repos.tech.orange/artifactory/api/pypi/pythonproxy/simple"
+priority = "primary"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
