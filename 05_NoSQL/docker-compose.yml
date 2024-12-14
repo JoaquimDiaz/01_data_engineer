@@ -1,0 +1,22 @@
+services:
+  mongo:
+    image: mongo:6.0
+    container_name: mongo
+    ports:
+      - "27017:27017"  # Map MongoDB to the host's port
+    volumes:
+      - mongo-data:/data/db  # Persistent storage for MongoDB data
+
+  python-csv:
+    build:
+      context: ./python-csv # The location of your Dockerfile
+    container_name: python-csv
+    depends_on:
+      - mongo  # Vérifie que le conteneur de la base mongo est bien lancé
+    volumes:
+      - ./python-csv:/usr/src/app  # Mount the current directory into the container
+    command: ["python", "main.py"]  # Command to run your Python app
+
+volumes:
+  mongo-data:
+    driver: local  # Use local storage for MongoDB data
