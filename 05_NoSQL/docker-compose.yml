@@ -1,30 +1,42 @@
 services:
   mongo:
-    image: mongo
+    image: mongo:6.0
     container_name: mongo
     environment:
       - DATABASE=${DATABASE}
       - COLLECTION=${COLLECTION}
       - COLLECTION_INFO=${COLLECTION_INFO}
-    restart: always
+      - MONGO_ADMIN_USERNAME=${MONGO_ADMIN_USERNAME}
+      - MONGO_ADMIN_PASSWORD=${MONGO_ADMIN_PASSWORD}
+    restart: unless-stopped   
+    healthcheck:  
+      test: ["CMD", "mongosh", "-u", "${MONGO_ADMIN_USERNAME}", "-p", "${MONGO_ADMIN_PASSWORD}", "--authenticationDatabase", "admin", "--eval", "db.runCommand({ ping: 1 })"]
+      interval: 30s
+      timeout: 10s
+      retries: 5
+      start_period: 20s
+    command: ["mongod", "--auth"]
     ports:
       - 27017:27017
     volumes:
       - ./mongo/mongo_data:/data/db
       - ./mongo/mongo_init/init_mongo.js:/docker-entrypoint-initdb.d/init-mongo.js:ro
       - ./mongo/mongo_init/create_users.js:/docker-entrypoint-initdb.d/create-users.js:ro
+    logging:
+      driver: "none" # Deactivate logs from mongo in docker console
 
   python-csv:
     build:
-      context: ./python-csv # localisation du dockerfile pour la construction de l'image
+      context: ./python-csv 
     container_name: python-csv
     env_file:
       - .env
     depends_on:
-      - mongo  # Vérifie que le conteneur de la base mongo est bien lancé
+      mongo:
+        condition: service_healthy
     volumes:
-      - ./python-csv:/usr/src/app # monte le directory dans le container
-    command: ["python", "main.py"]  # commande lancé dans le container
+      - ./python-csv:/usr/src/app
+    command: ["python", "main.py"]
 
 volumes: {}
 

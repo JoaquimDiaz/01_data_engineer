@@ -1,9 +1,9 @@
 // Database and collection creation with JSON Schema validation
 
-// ENVIRONMENT VARIABLES
-const dbName = _getEnv("DATABSE");
-const collectionName = _getEnv("COLLECTION");
-const collectionInfoName = _getEnv("COLLECTION_INFO");
+// Environment variables
+const dbName = process.env.DATABASE;
+const collectionName = process.env.COLLECTION;
+const collectionInfoName = process.env.COLLECTION_INFO;
 
 db = db.getSiblingDB(dbName);
 
@@ -47,19 +47,21 @@ db.createCollection(collectionName, {
                description: "Blood type must be a valid blood type."
             },
             date_of_admission: {
-               bsonType: "string",
-               pattern: "^\\d{4}-\\d{2}-\\d{2}$",
-               description: "Date of admission must be in the format YYYY-MM-DD."
+               bsonType: "date",
+               description: "Must be a date"
             },
             hospital: {
                bsonType: "string",
                description: "Hospital name must be a string."
-            }
+            },
+            discharge_date: {
+               bsonType: "date",
+               description: "Must be a date"
+            },
          }
       }
    }
 });
-
 
 // Create indexes for the collection
 const collection = db.getCollection(collectionName);

@@ -1,25 +1,22 @@
 // Create users for the database
 
-// ENVIRONMENT VARIABLES
-const dbName = _getEnv("DATABSE");
-const collectionName = _getEnv("COLLECTION");
-const collectionInfoName = _getEnv("COLLECTION_INFO");
-
-db = db.getSiblingDB('admin');
-
 // Create an admin user
+db = db.getSiblingDB('admin');
 db.createUser({
-  user: "adminUser",
-  pwd: "adminPassword",
-  roles: [ { role: "userAdminAnyDatabase", db: "admin" } ]
+  user: process.env.MONGO_ADMIN_USERNAME,
+  pwd: process.env.MONGO_ADMIN_PASSWORD,
+  roles: [ 
+    { role: "userAdminAnyDatabase", db: "admin" }, 
+    { role: "readWriteAnyDatabase", db: "admin" } 
+  ]
 });
 
-// Create a specific database user
-db = db.getSiblingDB('your_database_name');
+// Create a user for the specific database
+db = db.getSiblingDB(process.env.DATABASE);
 db.createUser({
-  user: "appUser",
-  pwd: "appPassword",
+  user: process.env.MONGO_ADMIN_USERNAME,
+  pwd: process.env.MONGO_ADMIN_PASSWORD,
   roles: [
-    { role: "readWrite", db: "your_database_name" }
+    { role: "readWrite", db: process.env.DATABASE }
   ]
 });
