@@ -8,13 +8,18 @@ services:
       - COLLECTION_INFO=${COLLECTION_INFO}
       - MONGO_ADMIN_USERNAME=${MONGO_ADMIN_USERNAME}
       - MONGO_ADMIN_PASSWORD=${MONGO_ADMIN_PASSWORD}
+      - MONGO_DEV_USERNAME=${MONGO_DEV_USERNAME}
+      - MONGO_DEV_PASSWORD=${MONGO_DEV_PASSWORD}
+      - MONGO_RO_USERNAME=${MONGO_RO_USERNAME}
+      - MONGO_RO_PASSWORD=${MONGO_RO_PASSWORD}
+
     restart: unless-stopped   
     healthcheck:  
       test: ["CMD", "mongosh", "-u", "${MONGO_ADMIN_USERNAME}", "-p", "${MONGO_ADMIN_PASSWORD}", "--authenticationDatabase", "admin", "--eval", "db.runCommand({ ping: 1 })"]
       interval: 30s
       timeout: 10s
       retries: 5
-      start_period: 20s
+      start_period: 40s
     command: ["mongod", "--auth"]
     ports:
       - 27017:27017
@@ -22,8 +27,8 @@ services:
       - ./mongo/mongo_data:/data/db
       - ./mongo/mongo_init/init_mongo.js:/docker-entrypoint-initdb.d/init-mongo.js:ro
       - ./mongo/mongo_init/create_users.js:/docker-entrypoint-initdb.d/create-users.js:ro
-    logging:
-      driver: "none" # Deactivate logs from mongo in docker console
+    #logging:
+      #driver: "none" 
 
   python-csv:
     build:

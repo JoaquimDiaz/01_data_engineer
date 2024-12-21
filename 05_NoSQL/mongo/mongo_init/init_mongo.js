@@ -13,6 +13,7 @@ db.createCollection(collectionName, {
       $jsonSchema: {
          bsonType: "object",
          required: [
+            "_id",
             "patient_id",
             "name",
             "age",
@@ -66,11 +67,8 @@ db.createCollection(collectionName, {
 // Create indexes for the collection
 const collection = db.getCollection(collectionName);
 
-// Create an index on 'patient_id'
-collection.createIndex({ patient_id: 1 });
-
-// Create a unique compound index on 'patient_id' and 'date_of_admission'
-collection.createIndex({ patient_id: 1, date_of_admission: 1 }, { unique: true });
+// Create an index on 'name'
+collection.createIndex({ name: 1 });
 
 // Create info collection
 db.createCollection(collectionInfoName);

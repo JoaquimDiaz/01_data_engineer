@@ -91,7 +91,7 @@ def init_logging(logging_path):
                 encoding='utf-8', 
                 handlers=[
                     logging.FileHandler(logging_file, encoding='utf-8'),
-                    logging.StreamHandler() # Show logs in consol
+                    logging.StreamHandler()
                 ]
             )
     logging.info("Starting main.py script")

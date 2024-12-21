@@ -24,6 +24,8 @@ def process_data(config, **kwarg) -> pl.DataFrame:
     
     check_for_nulls(df, required_columns)
     
+    df = check_for_0_and_negatives(df, ['age', 'billing_amount'])
+    
     # Removing duplicates
     df = df.unique()
     
@@ -94,6 +96,33 @@ def check_for_date_incoherence(df):
     if not incorrect_rows.is_empty():
         raise ValueError(f"Error : Some rows have a 'discharge_date' anterior to 'date_of_admission")
     
+def check_for_0_and_negatives(df, columns: list, replace=True) -> pl.DataFrame:
+    
+    for col in columns:
+        if col not in df.columns:
+            raise ValueError(f"Error when checking for negatives: {col} not found in dataset")
+    
+    try:
+        for col in columns:
+            
+            min = df.get_column(col).min()
+            
+            if min <= 0:                
+                if replace == True:
+                    logging.warning(f"⚠️  Column '{col}' contains negative values")
+                    logging.warning(f"⚠️  Replacing with absolute values")
+                    
+                    df = df.with_columns(pl.col(col).abs().alias(col))
+                    
+                else:
+                    raise ValueError(f"⚠️  Column '{col}' contains negative values")
+
+        return df
+    
+    except Exception as e:
+        
+        logging.error(f"Error when checking negative values in columns {columns} : {e}")
+        
 def create_patient_id(df, required_columns) -> pl.DataFrame:
     """ Adds a unique patient identifier ('patient_id') to the DataFrame and reorders columns. """
     try:

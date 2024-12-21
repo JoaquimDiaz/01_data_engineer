@@ -1,6 +1,5 @@
 // Create users for the database
 
-// Create an admin user
 db = db.getSiblingDB('admin');
 db.createUser({
   user: process.env.MONGO_ADMIN_USERNAME,
@@ -11,12 +10,20 @@ db.createUser({
   ]
 });
 
-// Create a user for the specific database
 db = db.getSiblingDB(process.env.DATABASE);
-db.createUser({
-  user: process.env.MONGO_ADMIN_USERNAME,
-  pwd: process.env.MONGO_ADMIN_PASSWORD,
-  roles: [
-    { role: "readWrite", db: process.env.DATABASE }
-  ]
-});
+
+db.createUser(
+  {
+    user: process.env.MONGO_DEV_USERNAME,
+    pwd: process.env.MONGO_DEV_PASSWORD,
+    roles: [{ role: 'readWrite', db: process.env.DATABASE }],
+  },
+);
+
+db.createUser(
+  {
+    user: process.env.MONGO_RO_USERNAME,
+    pwd: process.env.MONGO_RO_PASSWORD,
+    roles: [{ role: 'read', db: process.env.DATABASE }],
+  },
+);
